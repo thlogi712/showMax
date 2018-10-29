@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList';
-import MovieService from '../../services/MovieService';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as moviesActions from '../../actions/moviesActions';
+import PropTypes from 'prop-types';
+// import MovieService from '../../services/MovieService';
 
-export default class Movies extends Component {
+class Movies extends Component {
 
-    constructor() {
-        super();
-
-        this.state = {
-            movies: []
-        };
+    renderData() {
+        return this.props.movies[1].items;
     }
 
     componentDidMount() {
-        this.setState(() => ({ movies: MovieService.getMovies() }));
+        // this.props.moviesActions;
+        this.props.moviesActions.fetchMovies();
     }
 
     render() {
@@ -21,10 +22,38 @@ export default class Movies extends Component {
             <div className="container-fluid" style={{marginLeft: '-15px'}}>
                 <div className="d-flex flex-row">                    
                     <div className="col-sm-12">
-                        <MovieList movies={this.state.movies} />
+                        {this.props.movies.length > 0 ?
+                            this.renderData()
+                            :
+                            <div className="">
+                                No Data
+                            </div>
+                        }
+                        <MovieList movies={this.props.movies }/>
                     </div>
                 </div>
             </div>
         );
     }
 }
+Movies.propTypes = {
+    moviesActions: PropTypes.object,
+    movies: PropTypes.array
+};
+
+function mapStateToProps(state) {
+    return {
+        movies: state.movies
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        moviesActions: bindActionCreators(moviesActions, dispatch)
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Movies);

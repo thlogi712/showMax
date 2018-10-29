@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Movies from './Movie/Movies';
-
-export default class App extends Component {
+class App extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            title: 'React Movie Cards'
+            title: 'Top 5 Movies'
         };
     }
 
@@ -23,3 +22,5 @@ export default class App extends Component {
         );
     }
 }
+
+export default App;
