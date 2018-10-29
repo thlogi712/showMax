@@ -8,9 +8,13 @@ const MovieCard = (props) => (
             <div className="card-body">
                 <h4 className="card-title">{props.movie.title}</h4>
                 <p className="text-justify" style={{fontSize: '14px'}}>{props.movie.synopsis}</p>
+
             </div>
             <div className="card-footer">
                 <div className="clearfix">
+                    <div className="float-left">
+                        {props.movie.releaseDate}
+                    </div>
                     <div className="card-footer-badge float-right badge badge-primary badge-pill">Ranking
                         : {props.movie.rank}</div>
                 </div>
