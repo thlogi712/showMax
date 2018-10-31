@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import MovieList from './MovieList';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as moviesActions from '../../actions/moviesActions';
 import PropTypes from 'prop-types';
-// import MovieService from '../../services/MovieService';
 
 class Movies extends Component {
 
@@ -13,14 +12,12 @@ class Movies extends Component {
     }
 
     componentDidMount() {
-        // this.props.moviesActions;
         this.props.moviesActions.fetchMovies();
     }
-
     render() {
         return (
             <div className="container-fluid" style={{marginLeft: '-15px'}}>
-                <div className="d-flex flex-row">                    
+                <div className="d-flex flex-row">
                     <div className="col-sm-12">
                         {this.props.movies.length > 0 ?
                             this.renderData()
@@ -29,7 +26,7 @@ class Movies extends Component {
                                 No Data
                             </div>
                         }
-                        <MovieList movies={this.props.movies }/>
+                        <MovieList movies={this.props.movies}/>
                     </div>
                 </div>
             </div>
