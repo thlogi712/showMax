@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Synopsis from './Synopsis';
 
 const MovieCard = (props) => (
     <div className="movie-card">
         <div className="card mb-4">
-            <p>{props.movie.synopsis}</p>
+            <Synopsis description={props.movie}/>
             <img className="card-img-top img-fluid" src={props.movie.imageUrl} alt=""/>
             <div className="card-footer">
                 <div className="clearfix">
@@ -26,5 +27,4 @@ MovieCard.defaultProps = {
 MovieCard.propTypes = {
     movie: PropTypes.object
 };
-
 export default MovieCard;
